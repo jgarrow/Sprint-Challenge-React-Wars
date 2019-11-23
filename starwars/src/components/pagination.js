@@ -4,30 +4,42 @@ import styled from "styled-components";
 const Pagination = styled.ul`
     display: flex;
     width: 80%;
-    max-width: 960px;
     margin: 0 auto;
-    justify-content: space-between;
+    justify-content: ${props =>
+        props.previousExists === false ? "flex-end" : "space-between"};
 
     li {
         list-style-type: none;
         color: white;
         cursor: pointer;
     }
-`
+`;
 
 const Arrow = ({ setApiUrl, apiUrl, text }) => {
-    return (
-        <li onClick={() => setApiUrl(apiUrl)}>
-            {text}
-        </li>
-    )
-}
+    return <li onClick={() => setApiUrl(apiUrl)}>{text}</li>;
+};
 
-export default ({peopleData, setApiUrl}) => {
+export default ({ peopleData, setApiUrl }) => {
     return (
-        <Pagination>
-            {peopleData.previous ? <Arrow setApiUrl={setApiUrl} apiUrl={peopleData.previous} text={"← Previous"} /> : ""}
-            {peopleData.next ? <Arrow setApiUrl={setApiUrl} apiUrl={peopleData.next} text={"Next →"} /> : ""}
+        <Pagination {peopleData.previous === null ? previousExists={false} : previousExists={true}}>
+            {peopleData.previous ? (
+                <Arrow
+                    setApiUrl={setApiUrl}
+                    apiUrl={peopleData.previous}
+                    text={"← Previous"}
+                />
+            ) : (
+                ""
+            )}
+            {peopleData.next ? (
+                <Arrow
+                    setApiUrl={setApiUrl}
+                    apiUrl={peopleData.next}
+                    text={"Next →"}
+                />
+            ) : (
+                ""
+            )}
         </Pagination>
-    )
-}
+    );
+};

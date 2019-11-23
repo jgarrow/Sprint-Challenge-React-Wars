@@ -14,11 +14,15 @@ import Pagination from "./components/pagination";
 
 const CardWrapper = styled.div`
     width: 80%;
-    max-width: 960px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     grid-gap: 15px;
+
+    @media (max-width: 1150px) {
+        width: 90%;
+        grid-template-columns: repeat(4, 1fr);
+    }
 
     @media (max-width: 960px) {
         width: 90%;
@@ -39,9 +43,6 @@ const App = () => {
     // the state properties here.
     const [apiUrl, setApiUrl] = useState("https://swapi.co/api/people/");
     const [peopleData, setPeopleData] = useState({});
-    //   const [currentPage, setCurrentPage] = useState(1);
-
-    //   let pageNumString = "?page=".concat(currentPage);
 
     // Fetch characters from the star wars api in an effect hook. Remember, anytime you have a
     // side effect in a component, you want to think about which state and/or props it should
