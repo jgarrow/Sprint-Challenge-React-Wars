@@ -16,6 +16,22 @@ const CardWrapper = styled.div`
     width: 80%;
     max-width: 960px;
     margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 15px;
+
+    @media (max-width: 960px) {
+        width: 90%;
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: 700px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 500px) {
+        grid-template-columns: 1fr;
+    }
 `
 
 const App = () => {

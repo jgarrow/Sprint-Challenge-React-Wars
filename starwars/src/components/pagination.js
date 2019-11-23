@@ -10,6 +10,8 @@ const Pagination = styled.ul`
 
     li {
         list-style-type: none;
+        color: white;
+        cursor: pointer;
     }
 `
 
@@ -24,8 +26,8 @@ const Arrow = ({ setApiUrl, apiUrl, text }) => {
 export default ({peopleData, setApiUrl}) => {
     return (
         <Pagination>
-            <Arrow setApiUrl={setApiUrl} apiUrl={peopleData.previous} text={"← Previous"} />
-            <Arrow setApiUrl={setApiUrl} apiUrl={peopleData.next} text={"Next →"} />
+            {peopleData.previous ? <Arrow setApiUrl={setApiUrl} apiUrl={peopleData.previous} text={"← Previous"} /> : ""}
+            {peopleData.next ? <Arrow setApiUrl={setApiUrl} apiUrl={peopleData.next} text={"Next →"} /> : ""}
         </Pagination>
     )
 }
