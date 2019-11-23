@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
-import "./App.css";
 
 import Card from "./components/card";
 import Pagination from "./components/pagination";
@@ -12,17 +11,22 @@ import Pagination from "./components/pagination";
 // will need --> arrow component that takes a clickHandler --> setApiUrl(data.next) and setApiUrl(data.previous)
 // map over data.results to make cards for each person
 
+const AppWrapper = styled.div`
+    text-align: center;
+    margin-bottom: 1rem;
+`;
+
+const Header = styled.h1`
+    color: #443e3e;
+    text-shadow: 1px 1px 5px #fff;
+`;
+
 const CardWrapper = styled.div`
     width: 80%;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     grid-gap: 15px;
-
-    @media (max-width: 1150px) {
-        width: 90%;
-        grid-template-columns: repeat(4, 1fr);
-    }
 
     @media (max-width: 960px) {
         width: 90%;
@@ -36,7 +40,7 @@ const CardWrapper = styled.div`
     @media (max-width: 500px) {
         grid-template-columns: 1fr;
     }
-`
+`;
 
 const App = () => {
     // Try to think through what state you'll need for this app before starting. Then build out
@@ -50,21 +54,21 @@ const App = () => {
     useEffect(() => {
         axios
             .get(`${apiUrl}`)
-            .then(response => {
-                console.log(response.data);
-                setPeopleData(response.data);
-            })
+            .then(response => setPeopleData(response.data))
             .catch(error => console.log("There was an error: ", error));
     }, [apiUrl]);
 
     return (
-        <div className="App">
-            <h1 className="Header">React Wars</h1>
+        <AppWrapper>
+            <Header>React Wars</Header>
             <CardWrapper>
-                {peopleData.results && peopleData.results.map((person, index) => <Card peopleData={person} key={index}/>)}
+                {peopleData.results &&
+                    peopleData.results.map((person, index) => (
+                        <Card peopleData={person} key={index} />
+                    ))}
             </CardWrapper>
-            <Pagination setApiUrl={setApiUrl} peopleData={peopleData}/>
-        </div>
+            <Pagination setApiUrl={setApiUrl} peopleData={peopleData} />
+        </AppWrapper>
     );
 };
 

@@ -21,7 +21,9 @@ const Arrow = ({ setApiUrl, apiUrl, text }) => {
 
 export default ({ peopleData, setApiUrl }) => {
     return (
-        <Pagination {peopleData.previous === null ? previousExists={false} : previousExists={true}}>
+        <Pagination
+            previousExists={peopleData.previous === null ? false : true}
+        >
             {peopleData.previous ? (
                 <Arrow
                     setApiUrl={setApiUrl}
