@@ -26,13 +26,23 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] What is React JS and what problems does it try and solve? Support your answer with concepts introduced in class and from your personal research on the web.
 
+React JS is a JavaScript UI library. It allows us to create reusable components using JSX that can easily update/rerender the UI based on data/state changes more efficiently.
+
 - [ ] What does it mean to _think_ in react?
+
+To think in react, we have to think in terms of the data, or state. We need to figure out how to structure our application based on what data we need and which components need access to which data so that we can pass the appropriate props and set state accordingly.
 
 - [ ] Describe state.
 
+State is the data that we are using and manipulating in our application. When there is a change in the data, or state, we can trigger a rerender to update the DOM for just what was changed without having to necessarily rerender the entire page.
+
 - [ ] Describe props.
 
+Props are the data, or state, that we want to pass from one component to a child component so that it can have access to that information. However, we never make direct changes to props. If we want to change any data/state, we must do so using our `useState` functions.
+
 - [ ] What are side effects, and how do you sync effects in a React component to state or prop changes?
+
+Side effects are the things (could be anything) that affect things that are outside of the scope of the code being executed. For example, fetching data from an API will affect any code outside of our function that is getting that data because there is probably code that needs to use the data coming back from that API request. We can use the `.useEffect()` hook and give it a parameter to sync the effects to state changes. For example, if we pass in `[pageNum]` as the second parameter in `.useEffect()`, `.useEffect()` will only rerun any time the `pageNum` variable gets changed or updated. This way, we can control when and how many times the function in `.useEffect()` will run.
 
 ## Project Set Up
 
